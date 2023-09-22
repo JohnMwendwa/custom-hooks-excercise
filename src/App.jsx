@@ -1,23 +1,7 @@
-import { useEffect, useState } from "react";
+import useKeyEvent from "./hooks/use-key-event";
 
 function App() {
-  const [pressedKey, setPressedKey] = useState();
-
-  useEffect(() => {
-    function keyPressedHandler(event) {
-      const pressedKey = event.key;
-
-      if (!["s", "c", "p"].includes(pressedKey)) {
-        alert("Invalid key!");
-        return;
-      }
-      setPressedKey(pressedKey);
-    }
-
-    window.addEventListener("keydown", keyPressedHandler);
-
-    return () => window.removeEventListener("keydown", keyPressedHandler);
-  }, []);
+  const pressedKey = useKeyEvent(["s", "c", "p"]);
 
   let output = "";
 
